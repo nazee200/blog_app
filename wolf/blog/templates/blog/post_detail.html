@@ -1,0 +1,21 @@
+{% extends "blog/basic.html"%}
+    
+     {%block content%}
+     
+	   <article class="media content-section">
+         <div class="media-body">
+             <div class="article-metadata">
+                <img style="border-radius:30px;"  src={{ post.author.profile.image.url }} height='25px' width='25px'  >
+                 <a class="mr-2" href="#">{{ object.author }}</a>
+                 <small class="text-muted">{{ object.date_posted|date:"F d,Y" }}</small>
+             </div>
+             {% if post.author == user %}
+                  <a class="btn btn-outline-info" href={% url 'updateview' object.id %}> Update</a>
+                  <a class="btn btn-outline-danger" href={% url 'deleteview' object.id %}> Delete</a>
+             {% endif %}
+             <h2><a class="article-title" href={% url 'detailview' post.id %}>{{ object.title }}</a></h2>
+             <p class="article-content">{{ object.content }}</p>
+         </div>
+       </article>
+ {%endblock%}
+
